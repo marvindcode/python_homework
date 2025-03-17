@@ -1,5 +1,3 @@
-# Write your code here.
-
 # Task 1: Hello
 # Write a hello function that takes no arguments and returns Hello!.  Now, what matters here is what the function returns.  You can print() whatever you want for debugging purposes, but the tests ignore that, and only check the return value.
 
@@ -198,3 +196,4 @@ def pig_latin(sentence):
 
     return " ".join(convert_words(words) for words in sentence.split())
         
+# End 
