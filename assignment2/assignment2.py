@@ -1,5 +1,6 @@
 import os
 import custom_module
+import traceback
 
 # Task 2: Read a CSV
 
@@ -86,14 +87,38 @@ print(first_name(1))
 # The employee_find function then returns the matches.
 # Run the test and see if you got it right.
 
+# def employee_find(employee_id):
+#     def employee_match(row):
+#         return int(row[employee_id_column]) == employee_id
+    
+#     matches=list(filter(employee_match, employees["rows"]))
+#     return matches
+
+# print(employee_find(3))
+
 def employee_find(employee_id):
+
+    # test function for filter
     def employee_match(row):
         return int(row[employee_id_column]) == employee_id
     
-    matches=list(filter(employee_match, employees["rows"]))
-    return matches
+    try:
+        # find the 
+        matches=list(filter(employee_match, employees["rows"]))
 
-print(employee_find(3))
+        return matches
+    except Exception as e:
+        trace_back = traceback.extract_tb(e.__traceback__)
+        stack_trace = list()
+        for trace in trace_back:
+            stack_trace.append(f'File : {trace[0]} , Line : {trace[1]}, Func.Name : {trace[2]}, Message : {trace[3]}')
+        print(f"Exception type: {type(e).__name__}")
+        message = str(e)
+        if message:
+            print(f"Exception message: {message}")
+        print(f"Stack trace: {stack_trace}")
+    
+print('task 5:\n', employee_find(3))
 
 
 # Task 6: Find the Employee with a Lambda
@@ -107,9 +132,16 @@ print(employee_find(3))
 # Run the test to make sure things still work.
 
 def employee_find_2(employee_id):
-    matches = list(filter(lambda row: int(row[employee_id_column])== employee_id, employees["rows"]))
-    return matches
+    try:
+        matches = list(filter(lambda row: int(row[employee_id_column])== employee_id, employees["rows"]))
+        return matches
 
+    except Exception as e:
+        trace_back = traceback.extract_tb(e.__traceback__)
+        stack_trace = [f'File: {tb.filename}, Line: {tb.lineno}, Func: {tb.name}, Message: {tb.line}' for tb in trace_back]
+        print(f"Exception type: {type(e).__name__}")
+        print(f"Exception message: {e}")
+        print(f"Stack trace: {stack_trace}")
 
 # Task 7: Sort the Rows by last_name Using a Lambda
 
@@ -160,12 +192,28 @@ print(employee_dict(employees["rows"][1:]))
 # Add a line to your program that calls this function and prints the result.
 # Get the test working.
 
+# def all_employees_dict():
+#     return {
+#         row[0]: employee_dict(row)
+#         for row in employees["rows"]
+#     }
+# print(all_employees_dict())
+
 def all_employees_dict():
-    return {
-        row[0]: employee_dict(row)
-        for row in employees["rows"]
-    }
-print(all_employees_dict())
+    try:
+        employees_dict = {}
+        for row in employees['rows']:
+            id = row[0]
+            employees_dict[id] = employee_dict(row)
+        return employees_dict
+       
+    except Exception as e:
+        trace_back = traceback.extract_tb(e.__traceback__)
+        stack_trace = [f'File: {tb.filename}, Line: {tb.lineno}, Func: {tb.name}, Message: {tb.line}' for tb in trace_back]
+        print(f"Exception type: {type(e).__name__}")
+        print(f"Exception message: {e}")
+        print(f"Stack trace: {stack_trace}")
+
 
 
 # Task 10: Use the os Module
