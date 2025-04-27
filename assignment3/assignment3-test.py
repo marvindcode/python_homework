@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import os
 
-test1_df = pd.DataFrame({   'Name': ['Alice', 'Bob', 'charlie'], 
+test1_df = pd.DataFrame({   'Name': ['Alice', 'Bob', 'Charlie'], 
                             'Age': [25, 30, 35], 
                             'City': ['New York', 'Los Angeles', 'Chicago']})
 
@@ -104,9 +104,10 @@ def test_department_uppercase():
             all_upper = False
     assert all_upper
 
-
-
-
+# April 2: If dates are not converted properly with form="mixed" will end up with NaTs
+def test_hire_date_notNAT():
+    nat_count = a3.clean_data['Hire Date'].isna().sum()
+    assert nat_count == 0
 
 
 
