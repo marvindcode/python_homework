@@ -94,7 +94,6 @@ def add_publisher(cursor, name):
     except sqlite3.IntegrityError:
         print(f"Publisher '{name}' is already in the database.")
 
- 
 def add_magazine(cursor, name, publisher_id):
     try:
         cursor.execute("INSERT INTO Magazines (name, publisher_id) VALUES (?, ?)", (name, publisher_id))
