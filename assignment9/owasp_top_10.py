@@ -8,7 +8,7 @@ import pandas as pd
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 driver.get("https://owasp.org/www-project-top-ten/")
 
-vulnerabilities_10 = driver.find_elements(By.XPATH, '//a[contains(@class, "project-card") and contains(@href, "A0")]')
+vulnerabilities_10 = driver.find_elements(By.XPATH, '//a[starts-with(@href, "/Top10/A0")]')
 
 results = []
 for vuln in vulnerabilities_10:
