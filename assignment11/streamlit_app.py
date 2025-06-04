@@ -4,7 +4,7 @@ st.markdown("Cleaned dataset")
 
 import pandas as pd
 
-df = pd.read_csv("cleaned_procurement_data.csv")  
+df = pd.read_csv("assignment11/cleaned_procurement_data.csv")  
 st.subheader("Dataset Preview")
 st.dataframe(df)
 
